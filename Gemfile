@@ -47,3 +47,11 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 #.envを使えるようにする
 gem 'dotenv-rails'
+
+gem 'jwt'
+
+gem 'faraday'
+
+gem 'faraday_middleware'
+
+gem 'firebase-auth-id_token_keeper'
