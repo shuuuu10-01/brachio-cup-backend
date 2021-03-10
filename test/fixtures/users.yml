@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uid: MyString
+  google_access_token: MyString
+  id_token: MyString
+
+two:
+  uid: MyString
+  google_access_token: MyString
+  id_token: MyString
