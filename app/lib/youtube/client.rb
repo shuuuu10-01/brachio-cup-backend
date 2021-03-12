@@ -21,8 +21,7 @@ module Youtube
             if res_body[:error] != nil
                 return nil
             else
-                puts res_body
-                return res_body
+                return res_body['items']
             end
 
         end
