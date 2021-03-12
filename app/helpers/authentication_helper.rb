@@ -5,7 +5,7 @@ module AuthenticationHelper
     end
 
     def token
-        status_unauthorized if request.headers['Authorization'].present?
+        status_unauthorized if !request.headers['Authorization'].present?
         request.headers['Authorization'].split(' ')[1]
     end
 end
