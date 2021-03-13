@@ -2,7 +2,7 @@ class Api::V1::CredentialsController < ApplicationController
 
     def create
         @current_user.google_access_token = credential_params[:google_access_token]
-        if user.save
+        if @current_user.save
             head :ok
         else
             status_unauthorized

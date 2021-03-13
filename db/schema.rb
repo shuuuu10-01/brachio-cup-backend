@@ -10,7 +10,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_06_073054) do
+ActiveRecord::Schema.define(version: 2021_03_13_014242) do
+
+  create_table "channels", force: :cascade do |t|
+    t.string "youtube_channel_id"
+    t.string "name"
+    t.string "avatar"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["youtube_channel_id"], name: "index_channels_on_youtube_channel_id", unique: true
+  end
+
+  create_table "histories", force: :cascade do |t|
+    t.integer "user_id_id", null: false
+    t.integer "video_id_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id_id"], name: "index_histories_on_user_id_id"
+    t.index ["video_id_id"], name: "index_histories_on_video_id_id"
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "channel_id", null: false
+    t.boolean "favorited"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["channel_id"], name: "index_subscriptions_on_channel_id"
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
+  end
+
+  create_table "uploadeds", force: :cascade do |t|
+    t.integer "channel_id_id", null: false
+    t.integer "video_id_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["channel_id_id"], name: "index_uploadeds_on_channel_id_id"
+    t.index ["video_id_id"], name: "index_uploadeds_on_video_id_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "uid", null: false
@@ -19,4 +56,16 @@ ActiveRecord::Schema.define(version: 2021_03_06_073054) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "videos", force: :cascade do |t|
+    t.string "youtube_video_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "histories", "user_ids"
+  add_foreign_key "histories", "video_ids"
+  add_foreign_key "subscriptions", "channels"
+  add_foreign_key "subscriptions", "users"
+  add_foreign_key "uploadeds", "channel_ids"
+  add_foreign_key "uploadeds", "video_ids"
 end
